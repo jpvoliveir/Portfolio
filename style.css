@@ -249,3 +249,37 @@ h1{
         transform: translateY(-20px);
     }
 }
+
+.links-contato {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.texto-contato {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.8rem;
+}
+
+.botao-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #24292e;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.3s;
+  font-weight: 500;
+}
+
+.botao-github:hover {
+  background-color: #333;
+}
+
+.icone-github {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
