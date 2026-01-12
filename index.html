@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de João Pedro - Desenvolvedor Full Stack. Conheça meus projetos e entre em contato." />
+    <meta name="keywords" content="desenvolvedor, full stack, portfólio, programador, JavaScript, React, Laravel" />
+    <meta name="author" content="João Pedro" />
     <link rel="stylesheet" href="style.css" />
-    <title>Portfólio</title>
+    <title>João Pedro - Portfólio | Desenvolvedor Full Stack</title>
   </head>
   <body>
 
@@ -28,97 +31,124 @@
     </nav>
 
     <main id="inicio" class="cabecalho">
-      <img src="img/fotodeperfil.jpg" alt="foto-perfil" class="foto-perfil"/>
+      <img src="img/fotodeperfil.jpg" alt="Foto de perfil de João Pedro" class="foto-perfil" loading="eager" width="300" height="300"/>
       <h1>João Pedro</h1>
       <p class="cabecalho-sub">22 anos, Desenvolvedor full stack</p>
     </main>
 
     <section id="sobre" class="sobre">
-      <h2 class="sobre-titulo">Sobre mim</h1>
-          <div class="sobre-container">
-            <p class="sobre-paragrafo">
-            Olá! Meu nome é João Pedro, tenho 22 anos e estou no 6º semestre de
-            Ciência da Computação. <br /><br />Sou uma pessoa comunicativa, com
-            facilidade para trabalhar em equipe e colaborar em projetos, o que
-            contribui positivamente no ambiente acadêmico. <br /><br />Meu principal
-            objetivo é crescer profissionalmente na área de tecnologia, contribuindo
-            com soluções criativas e eficientes enquanto desenvolvo continuamente
-            minhas habilidades. Tenho grande interesse em participar de projetos
-            desafiadores que me permitam aprender na prática, expandir meus
-            conhecimentos e agregar valor à equipe da qual eu fizer parte. Estou em
-            constante busca por aprendizado, tanto no aspecto técnico quanto
-            interpessoal, e me mantenho motivado a evoluir a cada nova oportunidade.
-            </p>
-            </div>
+      <h2 class="sobre-titulo">Sobre mim</h2>
+      <div class="sobre-container">
+        <p class="sobre-paragrafo">
+          Olá! Meu nome é João Pedro, tenho 22 anos e estou no 7º semestre de
+          Ciência da Computação. <br /><br />Sou uma pessoa comunicativa, com
+          facilidade para trabalhar em equipe e colaborar em projetos, o que
+          contribui positivamente no ambiente acadêmico. <br /><br />Meu principal
+          objetivo é crescer profissionalmente na área de tecnologia, contribuindo
+          com soluções criativas e eficientes enquanto desenvolvo continuamente
+          minhas habilidades. Tenho grande interesse em participar de projetos
+          desafiadores que me permitam aprender na prática, expandir meus
+          conhecimentos e agregar valor à equipe da qual eu fizer parte. Estou em
+          constante busca por aprendizado, tanto no aspecto técnico quanto
+          interpessoal, e me mantenho motivado a evoluir a cada nova oportunidade.
+        </p>
       </div>
     </section>
 
     <section id="projetos" class="projetos">
     <h2 class="projetos-titulo">Meus Projetos</h2>
       <div class="projetos-caixa">
-        <div class="projetos-card">
-          <img src="img/CadastroSono.png" alt="Mysonimg" class="projetos-imagem" />
-            <div class="caixa-texto-projeto">
-              <h3 class="info-projetos">MySON</h3>
-              <p class="paragrafo-projeto">App que monitora recém nascidos e suas atividades.</p>
-            </div>
-        </div>
-        <div class="projetos-card">
-          <img src="img/projeto2.png" alt="Site de Viagens" class="projetos-imagem" />
-            <div class="caixa-texto-projeto">
-              <h3 class="info-projetos">Página de Viagens</h3>
-              <p class="paragrafo-projeto">Uma página interativo com roteiros de viagem mais cobiçados do mundo.</p>
-            </div>
-        </div>
-        <div class="projetos-card">
-          <img src="img/projeto1.png" alt="Loja de carros" class="projetos-imagem" />
-            <div class="caixa-texto-projeto">
-              <h3 class="info-projetos">Loja de carros</h3>
-              <p class="paragrafo-projeto">Loja virtual moderna com animações suaves e design responsivo para uma loja de carros.</p>
-            </div>
-        </div>
+        <article class="projetos-card">
+          <img src="img/CadastroSono.png" alt="Screenshot do aplicativo MySON" class="projetos-imagem" loading="lazy" width="400" height="200"/>
+          <div class="caixa-texto-projeto">
+            <h3 class="info-projetos">MySON</h3>
+            <p class="paragrafo-projeto">App que monitora recém nascidos e suas atividades utilizando Android Studio e Java.</p>
+          </div>
+        </article>
+        <article class="projetos-card">
+          <img src="img/projeto4.png" alt="Screenshot do site Maison-Olivier" class="projetos-imagem" loading="lazy" width="400" height="200"/>
+          <div class="caixa-texto-projeto">
+            <h3 class="info-projetos">Maison-Olivier</h3>
+            <p class="paragrafo-projeto">Página de uma loja de departamento de roupas mais elitizadas com design elegante e moderno. Feita em Laravel e React.</p>
+          </div>
+        </article>
+        <article class="projetos-card">
+          <img src="img/projeto1.png" alt="Screenshot da loja virtual de carros" class="projetos-imagem" loading="lazy" width="400" height="200"/>
+          <div class="caixa-texto-projeto">
+            <h3 class="info-projetos">Loja de carros</h3>
+            <p class="paragrafo-projeto">Loja virtual moderna com animações suaves e design responsivo para uma loja de carros.</p>
+          </div>
+        </article>
       </div>
     </section>
 
     <section id="contatos" class="contatos">
       <h2 class="contatos-titulo">Entre em Contato</h2>
-      <form id="formulario" class="formulario-contato" onsubmit="enviarwhatsapp(event)">
+      <form id="formulario" class="formulario-contato" onsubmit="enviarwhatsapp(event)" aria-label="Formulário de contato">
         <div class="grupo-form">
-          <input placeholder="Nome" class="campo-form" id="nome" />
+          <label for="nome" class="sr-only">Nome</label>
+          <input type="text" placeholder="Nome" class="campo-form" id="nome" name="nome" required aria-required="true"/>
         </div>
-        <button type="submit" class="botao-form">Enviar Whatsapp</button>
+        <button type="submit" class="botao-form" aria-label="Enviar mensagem via WhatsApp">Enviar Whatsapp</button>
       </form>
 
       <div class="links-contato">
     <p class="texto-contato">Ou conheça mais sobre meu trabalho:</p>
-    <a href="https://github.com/jpvoliveir" target="_blank" class="botao-github">
-      <img src="img/github.png" alt="GitHub" class="icone-github" />
+    <a href="https://github.com/jpvoliveir" target="_blank" rel="noopener noreferrer" class="botao-github" aria-label="Visite meu perfil no GitHub">
+      <img src="img/github.png" alt="Ícone do GitHub" class="icone-github" />
       Meu GitHub
     </a>
   </div>
     </section>
 
 
-    <Script>
-      function enviarwhatsapp(event){
-        event.preventDefault()
-      
+    <script>
+      // Função para enviar mensagem via WhatsApp
+      function enviarwhatsapp(event) {
+        event.preventDefault();
+        
         const nomeInput = document.getElementById('nome').value.trim();
         if (nomeInput === "") {
           alert("Por favor, insira seu nome antes de enviar a mensagem 😊");
-        } else {
+          return;
+        }
 
         const nome = nomeInput.charAt(0).toUpperCase() + nomeInput.slice(1).toLowerCase();
-        const telefone = '5561992542308'
-
+        const telefone = '5561992542308';
         const texto = `Olá, João! Meu nome é ${nome}.`;
+        const mensagem = encodeURIComponent(`${texto} Vi seu portfólio e gostaria de conversar sobre possíveis oportunidades ou projetos.`);
+        const url = `https://wa.me/${telefone}?text=${mensagem}`;
 
-        const url = `https://wa.me/${telefone}?text=${texto}%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20poss%C3%ADveis%20oportunidades%20ou%20projetos.`
-
-        window.open(url, '_blank')
-        console.log()
-        }
+        window.open(url, '_blank', 'noopener,noreferrer');
       }
-    </Script>
+
+      // Atualizar link ativo na navegação ao rolar
+      document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('section[id], main[id]');
+        const navLinks = document.querySelectorAll('.menu-link');
+
+        function highlightActiveSection() {
+          const scrollY = window.pageYOffset;
+
+          sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 100;
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+              navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                  link.classList.add('active');
+                }
+              });
+            }
+          });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection(); // Chamar uma vez ao carregar
+      });
+    </script>
   </body>
 </html>

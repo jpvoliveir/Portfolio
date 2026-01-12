@@ -58,8 +58,13 @@ body{
     transition: width 0.5s ease;
 }
 
-.menu-link:hover::after{
+.menu-link:hover::after,
+.menu-link.active::after{
     width: 100%;
+}
+
+.menu-link.active{
+    color: var(--primaria);
 }
 
 .cabecalho{
@@ -111,6 +116,7 @@ h1{
     border: 1px solid var(--vidro);
     backdrop-filter: blur(10px);
     background: rgba(255,255,255,0.05);
+    animation: fadeIn 0.8s ease forwards;
 }
 
 .sobre-paragrafo{
@@ -131,11 +137,26 @@ h1{
 .projetos-card{
     background: rgba(255,255,255,0.05);
     border-radius: 16px;
-    backdrop-filter: blur;
+    backdrop-filter: blur(10px);
     border: 1px solid var(--vidro);
     overflow: hidden;
     transition: all 0.5s ease;
     cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.projetos-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.projetos-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.projetos-card:nth-child(3) {
+    animation-delay: 0.5s;
 }
 
 .projetos-card:hover {
@@ -148,7 +169,7 @@ h1{
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .projetos-imagem{
@@ -184,9 +205,9 @@ h1{
     max-width: 600px;
     margin: 0 auto;
     background: rgba(255,255,255,0.05);
-    backdrop-filter: blur;
+    backdrop-filter: blur(10px);
     padding: 2rem;
-    border: 1px solid var(var(--vidro));
+    border: 1px solid var(--vidro);
     border-radius: 16px;
 }
 
@@ -196,8 +217,9 @@ h1{
     background: rgba(255,255,255,0.05);
     border-radius: 8px;
     color: var(--claro);
-    border: 1px solid var(var(--vidro));
+    border: 1px solid var(--vidro);
     outline: none;
+    font-size: 1rem;
 }
 
 .campo-form:focus{
@@ -218,8 +240,8 @@ h1{
     cursor: pointer;
     font-weight: bold;
     width: 100%;
-    transition: all 0.5 ease;
-
+    transition: all 0.5s ease;
+    font-size: 1rem;
 }
 
 .botao-form:hover{
@@ -243,10 +265,26 @@ h1{
 
 @keyframes flutuar{
     0%, 100%{
-        transform: translateY(0)
+        transform: translateY(0);
     }
     50%{
         transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeInUp{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
 }
 
@@ -282,4 +320,101 @@ h1{
   width: 24px;
   height: 24px;
   filter: invert(1);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .menu {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .menu-link {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .cabecalho-sub {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .foto-perfil {
+    width: 200px;
+    height: 200px;
+  }
+
+  .sobre-titulo,
+  .projetos-titulo,
+  .contatos-titulo {
+    font-size: 2rem;
+  }
+
+  .sobre-paragrafo {
+    font-size: 1rem;
+  }
+
+  .projetos-caixa {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .navegacao {
+    padding: 1rem;
+  }
+
+  .sobre,
+  .projetos,
+  .contatos {
+    padding: 4rem 1rem;
+  }
+
+  .formulario-contato {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    gap: 1rem;
+  }
+
+  .menu-link {
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .cabecalho-sub {
+    font-size: 1rem;
+  }
+
+  .foto-perfil {
+    width: 150px;
+    height: 150px;
+  }
+
+  .sobre-titulo,
+  .projetos-titulo,
+  .contatos-titulo {
+    font-size: 1.75rem;
+  }
 }
