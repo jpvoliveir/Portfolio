@@ -503,6 +503,40 @@ h1{
     color: var(--primaria);
 }
 
+/* ---------- Stack de tecnologias ---------- */
+
+.stack{
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--borda);
+}
+
+.stack-titulo{
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.stack-grupo{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.stack-label{
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--texto-suave);
+    padding-top: 0.3rem;
+}
+
+.stack .tags{
+    margin-top: 0;
+}
+
 /* ---------- Contato ---------- */
 
 .contato-caixa{
@@ -570,6 +604,7 @@ h1{
 /* ---------- Revelar ao rolar ---------- */
 
 .item,
+.stack,
 .sobre-container,
 .contato-caixa{
     opacity: 0;
@@ -578,6 +613,7 @@ h1{
 }
 
 .item.visivel,
+.stack.visivel,
 .sobre-container.visivel,
 .contato-caixa.visivel{
     opacity: 1;
@@ -642,6 +678,11 @@ button:focus-visible{
         font-size: 1.35rem;
     }
 
+    .stack-grupo{
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+
     .sobre-paragrafo,
     .contato-texto{
         font-size: 1rem;
@@ -685,6 +726,7 @@ button:focus-visible{
     }
 
     .item,
+    .stack,
     .sobre-container,
     .contato-caixa{
         opacity: 1;
