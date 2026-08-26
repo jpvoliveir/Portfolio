@@ -1,153 +1,656 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio de João Pedro - Desenvolvedor Full Stack. Conheça meus projetos e entre em contato." />
-    <meta name="keywords" content="desenvolvedor, full stack, portfólio, programador, JavaScript, React, Laravel" />
+    <meta
+      name="description"
+      content="Portfólio de João Pedro - Desenvolvedor Full Stack. Conheça meus projetos e entre em contato."
+    />
+    <meta
+      name="keywords"
+      content="desenvolvedor, full stack, portfólio, programador, JavaScript, React, Laravel"
+    />
     <meta name="author" content="João Pedro" />
+    <meta name="theme-color" content="#0b0f1a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>João Pedro - Portfólio | Desenvolvedor Full Stack</title>
+    <script>
+      // Aplica o tema salvo antes da primeira pintura, para evitar flash de cor errada
+      (function () {
+        try {
+          var t = localStorage.getItem("tema");
+          if (t) document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-
-    <div class="particulas"></div>
+    <div class="particulas" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+      <span class="blob blob-4"></span>
+      <span class="blob blob-5"></span>
+      <span class="blob blob-6"></span>
+    </div>
 
     <nav class="navegacao">
       <ul class="menu">
-        <li>
-          <a href="#inicio" class="menu-link"> Início</a>
-        </li>
-        <li>
-          <a href="#sobre" class="menu-link"> Sobre mim</a>
-        </li>
-        <li>
-          <a href="#projetos" class="menu-link"> Projetos</a>
-        </li>
-        <li>
-          <a href="#contatos" class="menu-link">Contato </a>
-        </li>
+        <li><a href="#inicio" class="menu-link">Início</a></li>
+        <li><a href="#sobre" class="menu-link">Sobre</a></li>
+        <li><a href="#experiencia" class="menu-link">Experiência</a></li>
+        <li><a href="#projetos" class="menu-link">Projetos</a></li>
+        <li><a href="#contatos" class="menu-link">Contato</a></li>
       </ul>
+      <button
+        type="button"
+        id="tema-toggle"
+        class="tema-toggle"
+        aria-label="Alternar entre tema claro e escuro"
+      >
+        <svg
+          class="icone-sol"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          />
+        </svg>
+        <svg
+          class="icone-lua"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
     </nav>
 
     <main id="inicio" class="cabecalho">
-      <img src="img/fotodeperfil.jpg" alt="Foto de perfil de João Pedro" class="foto-perfil" loading="eager" width="300" height="300"/>
       <h1>João Pedro</h1>
-      <p class="cabecalho-sub">22 anos, Desenvolvedor full stack</p>
+      <p class="cabecalho-sub">
+        Desenvolvedor Full Stack &middot; Ciência da Computação
+      </p>
+
+      <div class="social">
+        <a
+          class="social-link"
+          href="https://github.com/jpvoliveir"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-link"
+          href="https://www.linkedin.com/in/jo%C3%A3o-pedro-vieira-6a5213266"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-link"
+          href="https://wa.me/5561992542308?text=Ol%C3%A1%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20poss%C3%ADveis%20oportunidades%20ou%20projetos."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+            />
+          </svg>
+        </a>
+        <a
+          class="social-link"
+          href="mailto:jpvo2003@gmail.com"
+          aria-label="E-mail"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </a>
+        <a
+          class="social-link"
+          href="cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Currículo em PDF"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+          </svg>
+        </a>
+      </div>
+
+      <a href="#sobre" class="rolar" aria-label="Ir para a próxima seção">
+        <span>role para ver mais</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </a>
     </main>
 
-    <section id="sobre" class="sobre">
-      <h2 class="sobre-titulo">Sobre mim</h2>
+    <section id="sobre" class="secao">
+      <header class="secao-cabecalho">
+        <h2 class="secao-titulo">Sobre</h2>
+        <p class="secao-sub">quem eu sou</p>
+      </header>
       <div class="sobre-container">
         <p class="sobre-paragrafo">
-          Olá! Meu nome é João Pedro, tenho 22 anos e estou no 7º semestre de
-          Ciência da Computação. <br /><br />Sou uma pessoa comunicativa, com
-          facilidade para trabalhar em equipe e colaborar em projetos, o que
-          contribui positivamente no ambiente acadêmico. <br /><br />Meu principal
-          objetivo é crescer profissionalmente na área de tecnologia, contribuindo
-          com soluções criativas e eficientes enquanto desenvolvo continuamente
-          minhas habilidades. Tenho grande interesse em participar de projetos
-          desafiadores que me permitam aprender na prática, expandir meus
-          conhecimentos e agregar valor à equipe da qual eu fizer parte. Estou em
-          constante busca por aprendizado, tanto no aspecto técnico quanto
-          interpessoal, e me mantenho motivado a evoluir a cada nova oportunidade.
+          Estudante de Ciência da Computação no último semestre, focado em
+          desenvolvimento web full stack. Trabalho com
+          <strong>Laravel</strong> e <strong>React</strong>, possuo experiência
+          também com <strong>Python</strong> e <strong>desenvolvimento</strong>
+          <strong>mobile</strong>.
+        </p>
+        <p class="sobre-paragrafo">
+          Gosto de projetos em que dá pra acompanhar o resultado de perto —>
+          interface, banco de dados e a lógica no meio do caminho. Procuro um
+          estágio ou oportunidade em um time onde eu possa construir coisas de
+          verdade e aprender rápido.
         </p>
       </div>
     </section>
 
-    <section id="projetos" class="projetos">
-    <h2 class="projetos-titulo">Meus Projetos</h2>
-      <div class="projetos-caixa">
-        <article class="projetos-card">
-          <img src="img/CadastroSono.png" alt="Screenshot do aplicativo MySON" class="projetos-imagem" loading="lazy" width="400" height="200"/>
-          <div class="caixa-texto-projeto">
-            <h3 class="info-projetos">MySON</h3>
-            <p class="paragrafo-projeto">App que monitora recém nascidos e suas atividades utilizando Android Studio e Java.</p>
+    <section id="experiencia" class="secao">
+      <header class="secao-cabecalho">
+        <h2 class="secao-titulo">Experiência</h2>
+        <p class="secao-sub">formação &amp; onde eu já passei</p>
+      </header>
+
+      <div class="lista">
+        <article class="item">
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-1"></span>Graduação</span
+              >
+              <!-- TODO: confirme o ano de início -->
+              <span class="item-quando"
+                >2022 – 2026 &middot;
+                <span class="chip">8º semestre</span></span
+              >
+            </div>
+            <h3 class="item-titulo">
+              Bacharelado em Ciência da Computação — CEUB
+            </h3>
+            <p class="item-desc">
+              Formação com ênfase em estruturas de dados, algoritmos, banco de
+              dados e engenharia de software, com projetos práticos em equipe
+              usando metodologias ágeis.
+            </p>
+            <ul class="tags">
+              <li>Algoritmos</li>
+              <li>Banco de Dados</li>
+              <li>Engenharia de Software</li>
+              <li>Metodologias Ágeis</li>
+            </ul>
           </div>
         </article>
-        <article class="projetos-card">
-          <img src="img/projeto4.png" alt="Screenshot do site Maison-Olivier" class="projetos-imagem" loading="lazy" width="400" height="200"/>
-          <div class="caixa-texto-projeto">
-            <h3 class="info-projetos">Maison-Olivier</h3>
-            <p class="paragrafo-projeto">Página de uma loja de departamento de roupas mais elitizadas com design elegante e moderno. Feita em Laravel e React.</p>
+
+        <!-- Modelo para adicionar um estágio ou emprego. Duplique e preencha:
+        <article class="item">
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"><span class="ponto ponto-2"></span>Cargo</span>
+              <span class="item-quando">Mês/Ano – Mês/Ano &middot; <span class="chip">Stack</span></span>
+            </div>
+            <h3 class="item-titulo">Nome da empresa</h3>
+            <p class="item-desc">O que você fez ali, com números sempre que der.</p>
+            <ul class="tags"><li>Tecnologia</li></ul>
           </div>
         </article>
-        <article class="projetos-card">
-          <img src="img/projeto1.png" alt="Screenshot da loja virtual de carros" class="projetos-imagem" loading="lazy" width="400" height="200"/>
-          <div class="caixa-texto-projeto">
-            <h3 class="info-projetos">Loja de carros</h3>
-            <p class="paragrafo-projeto">Loja virtual moderna com animações suaves e design responsivo para uma loja de carros.</p>
+        -->
+      </div>
+    </section>
+
+    <section id="projetos" class="secao">
+      <header class="secao-cabecalho">
+        <h2 class="secao-titulo">Projetos</h2>
+        <p class="secao-sub">coisas que eu construí</p>
+      </header>
+
+      <div class="lista">
+        <article class="item">
+          <div class="item-media">
+            <img
+              src="img/trophe.jpg"
+              alt="Tela de acompanhamento diário do aplicativo Trophe"
+              class="item-imagem"
+              loading="lazy"
+              width="1398"
+              height="648"
+            />
+          </div>
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-1"></span>Full-Stack Developer</span
+              >
+              <span class="item-quando"
+                >2026 &middot;
+                <span class="chip">Laravel · React Native</span></span
+              >
+            </div>
+            <h3 class="item-titulo">Trophe</h3>
+            <p class="item-desc">
+              Aplicativo de dieta flexível que vai além do registro de calorias:
+              reconhece a refeição por foto, gera a estratégia alimentar do dia e
+              a recalcula a cada refeição registrada. O diferencial é o motor de
+              previsão de deslize, que cruza déficit calórico acumulado, tempo
+              sem comer e o histórico do usuário para alertar antes que a dieta
+              seja quebrada. Projeto em equipe no qual atuei como principal
+              contribuidor, do backend ao app.
+            </p>
+            <ul class="tags">
+              <li>React Native</li>
+              <li>Expo</li>
+              <li>TypeScript</li>
+              <li>Laravel</li>
+              <li>MySQL</li>
+              <li>IA</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-media">
+            <img
+              src="img/deep-dish.jpg"
+              alt="Landing page da plataforma Deep Dish"
+              class="item-imagem"
+              loading="lazy"
+              width="1398"
+              height="648"
+            />
+          </div>
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-3"></span>Full-Stack Developer</span
+              >
+              <span class="item-quando"
+                >2025 – 2026 &middot;
+                <span class="chip">React · Laravel</span></span
+              >
+            </div>
+            <h3 class="item-titulo">Deep Dish</h3>
+            <p class="item-desc">
+              Plataforma de fila inteligente e reserva de mesas para
+              restaurantes. O cliente entra na fila remotamente e acompanha a
+              própria posição em tempo real; o restaurante controla mesas,
+              reservas do dia e equipe por um painel separado. Desenvolvido em
+              equipe, com integração contínua no GitHub Actions e ambiente
+              containerizado em Docker.
+            </p>
+            <ul class="tags">
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Vite</li>
+              <li>Tailwind</li>
+              <li>Laravel</li>
+              <li>Docker</li>
+            </ul>
+            <div class="item-links">
+              <a
+                href="https://github.com/joaogpereira/deep-dish"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub &rarr;</a
+              >
+            </div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-media">
+            <img
+              src="img/escalonador.jpg"
+              alt="Painel de criação com IA do Escalonador, com os modelos de geração de vídeo"
+              class="item-imagem"
+              loading="lazy"
+              width="1398"
+              height="648"
+            />
+          </div>
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-2"></span>Backend Developer</span
+              >
+              <span class="item-quando"
+                >2026 &middot; <span class="chip">Laravel</span></span
+              >
+            </div>
+            <h3 class="item-titulo">Escalonador</h3>
+            <p class="item-desc">
+              Plataforma de marketing de performance em produção. Atuei no módulo
+              de geração de vídeos com IA: implementei o suporte a múltiplos
+              workspaces, com CRUD próprio para cada um, permitindo que o usuário
+              organize trabalhos em contextos separados em vez de acumular tudo
+              em um só. Também integrei o Kling 3.0 como novo modelo de geração
+              de vídeo.
+            </p>
+            <ul class="tags">
+              <li>Laravel</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>API REST</li>
+              <li>Kling 3.0</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-media">
+            <img
+              src="img/CadastroSono.png"
+              alt="Tela do aplicativo MySON"
+              class="item-imagem"
+              loading="lazy"
+              width="560"
+              height="320"
+            />
+          </div>
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-2"></span>Mobile Developer</span
+              >
+              <!-- TODO: confirme o ano -->
+              <span class="item-quando"
+                >2024 &middot; <span class="chip">Java · Android</span></span
+              >
+            </div>
+            <h3 class="item-titulo">MySON</h3>
+            <p class="item-desc">
+              Aplicativo Android para acompanhamento de recém-nascidos. Registra
+              rotinas de sono, alimentação e demais atividades do bebê, e
+              organiza o histórico para que os pais consigam identificar padrões
+              ao longo dos dias.
+            </p>
+            <ul class="tags">
+              <li>Java</li>
+              <li>Android Studio</li>
+              <li>SQLite</li>
+            </ul>
+            <!-- TODO: adicione o link do repositório
+            <div class="item-links"><a href="#" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a></div>
+            -->
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-media">
+            <img
+              src="img/projeto4.png"
+              alt="Tela do site Maison-Olivier"
+              class="item-imagem"
+              loading="lazy"
+              width="560"
+              height="320"
+            />
+          </div>
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-3"></span>Full-Stack Developer</span
+              >
+              <!-- TODO: confirme o ano -->
+              <span class="item-quando"
+                >2025 &middot; <span class="chip">Laravel · React</span></span
+              >
+            </div>
+            <h3 class="item-titulo">Maison-Olivier</h3>
+            <p class="item-desc">
+              Loja de departamento de roupas de alto padrão, com catálogo,
+              navegação por categorias e um design voltado para o público
+              premium. Front-end em React consumindo uma API em Laravel.
+            </p>
+            <ul class="tags">
+              <li>Laravel</li>
+              <li>React</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+            </ul>
+            <!-- TODO: adicione o link do repositório ou da demo
+            <div class="item-links"><a href="#" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a></div>
+            -->
+          </div>
+        </article>
+
+        <article class="item">
+          <!-- TODO: um gráfico do projeto (importância de variáveis, ou previsto x observado)
+               renderiza bem aqui. Salve em img/hydroinsight.jpg e descomente.
+          <div class="item-media">
+            <img src="img/hydroinsight.jpg" alt="Gráfico de resultados do HydroInsight" class="item-imagem" loading="lazy" width="1398" height="648" />
+          </div>
+          -->
+          <div class="item-corpo">
+            <div class="item-meta">
+              <span class="item-papel"
+                ><span class="ponto ponto-1"></span>Machine Learning</span
+              >
+              <span class="item-quando"
+                >2026 &middot; <span class="chip">Python · scikit-learn</span></span
+              >
+            </div>
+            <h3 class="item-titulo">HydroInsight — EY AI &amp; Data Challenge</h3>
+            <p class="item-desc">
+              Modelo de previsão de qualidade da água em rios da África do Sul,
+              feito para o EY AI &amp; Data Challenge 2026. Combina imagens de
+              satélite Landsat, variáveis climáticas do TerraClimate e medições
+              in situ para estimar três indicadores — fósforo reativo dissolvido,
+              condutividade elétrica e alcalinidade total. O pipeline vai do
+              download dos dados à submissão, com engenharia de índices
+              espectrais, agregações espaço-temporais e experimentos versionados
+              em MLflow e DVC.
+            </p>
+            <ul class="tags">
+              <li>Python</li>
+              <li>scikit-learn</li>
+              <li>Random Forest</li>
+              <li>MLflow</li>
+              <li>DVC</li>
+              <li>GeoPandas</li>
+              <li>Sensoriamento Remoto</li>
+            </ul>
+            <!-- TODO: publique o repositório e descomente
+            <div class="item-links"><a href="#" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a></div>
+            -->
           </div>
         </article>
       </div>
     </section>
 
-    <section id="contatos" class="contatos">
-      <h2 class="contatos-titulo">Entre em Contato</h2>
-      <form id="formulario" class="formulario-contato" onsubmit="enviarwhatsapp(event)" aria-label="Formulário de contato">
-        <div class="grupo-form">
-          <label for="nome" class="sr-only">Nome</label>
-          <input type="text" placeholder="Nome" class="campo-form" id="nome" name="nome" required aria-required="true"/>
-        </div>
-        <button type="submit" class="botao-form" aria-label="Enviar mensagem via WhatsApp">Enviar Whatsapp</button>
-      </form>
+    <section id="contatos" class="secao">
+      <header class="secao-cabecalho">
+        <h2 class="secao-titulo">Contato</h2>
+        <p class="secao-sub">vamos conversar</p>
+      </header>
 
-      <div class="links-contato">
-    <p class="texto-contato">Ou conheça mais sobre meu trabalho:</p>
-    <a href="https://github.com/jpvoliveir" target="_blank" rel="noopener noreferrer" class="botao-github" aria-label="Visite meu perfil no GitHub">
-      <img src="img/github.png" alt="Ícone do GitHub" class="icone-github" />
-      Meu GitHub
-    </a>
-  </div>
+      <div class="contato-caixa">
+        <p class="contato-texto">
+          Estou aberto a estágios, freelas e projetos. A forma mais rápida de
+          falar comigo é pelo WhatsApp.
+        </p>
+        <a
+          class="botao-principal"
+          href="https://wa.me/5561992542308?text=Ol%C3%A1%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20poss%C3%ADveis%20oportunidades%20ou%20projetos."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+            />
+          </svg>
+          Falar no WhatsApp
+        </a>
+        <p class="contato-secundario">
+          <a
+            href="https://github.com/jpvoliveir"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub &rarr;</a
+          >
+          <a
+            href="https://www.linkedin.com/in/jo%C3%A3o-pedro-vieira-6a5213266"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn &rarr;</a
+          >
+          <a href="mailto:jpvo2003@gmail.com">E-mail &rarr;</a>
+          <a href="cv.pdf" target="_blank" rel="noopener noreferrer"
+            >Currículo &rarr;</a
+          >
+        </p>
+      </div>
     </section>
 
+    <footer class="rodape">
+      <p>&copy; 2026 João Pedro &middot; feito com HTML, CSS e JavaScript</p>
+    </footer>
 
     <script>
-      // Função para enviar mensagem via WhatsApp
-      function enviarwhatsapp(event) {
-        event.preventDefault();
-        
-        const nomeInput = document.getElementById('nome').value.trim();
-        if (nomeInput === "") {
-          alert("Por favor, insira seu nome antes de enviar a mensagem 😊");
-          return;
+      // Alternar entre tema claro e escuro
+      (function () {
+        const botao = document.getElementById("tema-toggle");
+        const raiz = document.documentElement;
+
+        function temaAtual() {
+          const definido = raiz.getAttribute("data-theme");
+          if (definido) return definido;
+          return window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
         }
 
-        const nome = nomeInput.charAt(0).toUpperCase() + nomeInput.slice(1).toLowerCase();
-        const telefone = '5561992542308';
-        const texto = `Olá, João! Meu nome é ${nome}.`;
-        const mensagem = encodeURIComponent(`${texto} Vi seu portfólio e gostaria de conversar sobre possíveis oportunidades ou projetos.`);
-        const url = `https://wa.me/${telefone}?text=${mensagem}`;
-
-        window.open(url, '_blank', 'noopener,noreferrer');
-      }
+        botao.addEventListener("click", function () {
+          const novo = temaAtual() === "dark" ? "light" : "dark";
+          raiz.setAttribute("data-theme", novo);
+          try {
+            localStorage.setItem("tema", novo);
+          } catch (e) {}
+        });
+      })();
 
       // Atualizar link ativo na navegação ao rolar
-      document.addEventListener('DOMContentLoaded', function() {
-        const sections = document.querySelectorAll('section[id], main[id]');
-        const navLinks = document.querySelectorAll('.menu-link');
+      document.addEventListener("DOMContentLoaded", function () {
+        const secoes = document.querySelectorAll("section[id], main[id]");
+        const navLinks = document.querySelectorAll(".menu-link");
 
         function highlightActiveSection() {
           const scrollY = window.pageYOffset;
 
-          sections.forEach(current => {
+          secoes.forEach(function (current) {
+            const sectionTop = current.offsetTop - 120;
             const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 100;
-            const sectionId = current.getAttribute('id');
+            const sectionId = current.getAttribute("id");
 
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-              navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                  link.classList.add('active');
-                }
+              navLinks.forEach(function (link) {
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") === "#" + sectionId,
+                );
               });
             }
           });
         }
 
-        window.addEventListener('scroll', highlightActiveSection);
-        highlightActiveSection(); // Chamar uma vez ao carregar
+        window.addEventListener("scroll", highlightActiveSection, {
+          passive: true,
+        });
+        highlightActiveSection();
+      });
+
+      // Revelar blocos conforme entram na tela
+      document.addEventListener("DOMContentLoaded", function () {
+        const alvos = document.querySelectorAll(
+          ".item, .sobre-container, .contato-caixa",
+        );
+
+        if (!("IntersectionObserver" in window)) {
+          alvos.forEach(function (el) {
+            el.classList.add("visivel");
+          });
+          return;
+        }
+
+        const observador = new IntersectionObserver(
+          function (entradas) {
+            entradas.forEach(function (entrada) {
+              if (entrada.isIntersecting) {
+                entrada.target.classList.add("visivel");
+                observador.unobserve(entrada.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        alvos.forEach(function (el) {
+          observador.observe(el);
+        });
       });
     </script>
   </body>
