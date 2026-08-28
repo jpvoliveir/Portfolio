@@ -2,19 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-html{
-    scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    font-family: 'Switzer', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Tema escuro (padrão) */
 :root{
     --primaria: #6366f1;
-    --secundaria: #a855f7;
-    --terciaria: #ec4899;
+    --primaria-forte: #818cf8;
     --fundo: #0b0f1a;
     --superficie: rgba(255,255,255,0.04);
     --superficie-forte: rgba(255,255,255,0.07);
@@ -22,39 +16,34 @@ html{
     --texto: #e8ecf4;
     --texto-suave: #94a3b8;
     --sombra: rgba(0,0,0,0.4);
-    --blob-opacidade: 0.22;
 }
 
 /* Tema claro por preferência do sistema (quando o usuário não escolheu nada) */
 @media (prefers-color-scheme: light){
     :root:not([data-theme="dark"]){
         --primaria: #4f46e5;
-        --secundaria: #7c3aed;
-        --terciaria: #db2777;
+        --primaria-forte: #4338ca;
         --fundo: #f6f6fb;
-        --superficie: rgba(255,255,255,0.65);
-        --superficie-forte: rgba(255,255,255,0.85);
-        --borda: rgba(15,23,42,0.09);
+        --superficie: rgba(15,23,42,0.035);
+        --superficie-forte: rgba(15,23,42,0.06);
+        --borda: rgba(15,23,42,0.1);
         --texto: #12172a;
         --texto-suave: #5b6478;
-        --sombra: rgba(15,23,42,0.1);
-        --blob-opacidade: 0.24;
+        --sombra: rgba(15,23,42,0.12);
     }
 }
 
 /* Tema claro escolhido no botão */
 :root[data-theme="light"]{
     --primaria: #4f46e5;
-    --secundaria: #7c3aed;
-    --terciaria: #db2777;
+    --primaria-forte: #4338ca;
     --fundo: #f6f6fb;
-    --superficie: rgba(255,255,255,0.65);
-    --superficie-forte: rgba(255,255,255,0.85);
-    --borda: rgba(15,23,42,0.09);
+    --superficie: rgba(15,23,42,0.035);
+    --superficie-forte: rgba(15,23,42,0.06);
+    --borda: rgba(15,23,42,0.1);
     --texto: #12172a;
     --texto-suave: #5b6478;
-    --sombra: rgba(15,23,42,0.1);
-    --blob-opacidade: 0.24;
+    --sombra: rgba(15,23,42,0.12);
 }
 
 body{
@@ -64,162 +53,129 @@ body{
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* ---------- Fundo animado ---------- */
+::selection{
+    background: var(--primaria);
+    color: #fff;
+}
 
-.particulas{
+/* ---------- Fundo animado (WebGL2) ---------- */
+
+#fundo-canvas{
     position: fixed;
     inset: 0;
     z-index: -1;
-    overflow: hidden;
-    background: var(--fundo);
+    display: block;
+    width: 100vw;
+    height: 100vh;
 }
 
-.blob{
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(110px);
-    opacity: var(--blob-opacidade);
-    will-change: transform;
+/* ---------- Transição entre páginas ---------- */
+
+@view-transition{
+    navigation: auto;
 }
 
-.blob-1{
-    width: 420px; height: 420px;
-    top: -6%; left: 4%;
-    background: var(--primaria);
-    animation: flutuar-a 22s ease-in-out infinite;
+::view-transition-old(root),
+::view-transition-new(root){
+    animation-duration: 0.32s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.blob-2{
-    width: 340px; height: 340px;
-    top: 12%; right: 8%;
-    background: var(--secundaria);
-    animation: flutuar-b 26s ease-in-out infinite;
+.controles{
+    view-transition-name: controles;
 }
 
-.blob-3{
-    width: 300px; height: 300px;
-    top: 48%; left: 22%;
-    background: var(--terciaria);
-    animation: flutuar-c 30s ease-in-out infinite;
-}
+/* ---------- Controles fixos (tema + menu) ---------- */
 
-.blob-4{
-    width: 380px; height: 380px;
-    bottom: 6%; right: 16%;
-    background: var(--primaria);
-    animation: flutuar-b 34s ease-in-out infinite reverse;
-}
-
-.blob-5{
-    width: 240px; height: 240px;
-    bottom: 22%; left: 2%;
-    background: var(--secundaria);
-    animation: flutuar-a 28s ease-in-out infinite reverse;
-}
-
-.blob-6{
-    width: 200px; height: 200px;
-    top: 32%; left: 52%;
-    background: var(--terciaria);
-    animation: flutuar-c 24s ease-in-out infinite;
-}
-
-@keyframes flutuar-a{
-    0%, 100%{ transform: translate(0, 0) scale(1); }
-    33%{ transform: translate(60px, 40px) scale(1.12); }
-    66%{ transform: translate(-40px, 70px) scale(0.92); }
-}
-
-@keyframes flutuar-b{
-    0%, 100%{ transform: translate(0, 0) scale(1); }
-    50%{ transform: translate(-70px, 50px) scale(1.15); }
-}
-
-@keyframes flutuar-c{
-    0%, 100%{ transform: translate(0, 0) scale(1); }
-    40%{ transform: translate(50px, -60px) scale(0.88); }
-    75%{ transform: translate(-30px, -20px) scale(1.08); }
-}
-
-/* ---------- Navegação ---------- */
-
-.navegacao{
+.controles{
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 1.25rem 1.5rem;
-    background: color-mix(in srgb, var(--fundo) 72%, transparent);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--borda);
-}
-
-.menu{
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    gap: 2.5rem;
-}
-
-.menu-link{
-    text-decoration: none;
-    color: var(--texto-suave);
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.4rem 0;
-    transition: color 0.3s ease;
-}
-
-.menu-link:hover{
-    color: var(--texto);
-}
-
-.menu-link::after{
-    content:"";
-    height: 2px;
-    width: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--primaria), var(--secundaria));
-    transition: width 0.4s ease;
-}
-
-.menu-link:hover::after,
-.menu-link.active::after{
-    width: 100%;
-}
-
-.menu-link.active{
-    color: var(--texto);
-}
-
-.tema-toggle{
-    position: absolute;
-    top: 50%;
+    top: 1.25rem;
     right: 1.5rem;
-    transform: translateY(-50%);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.tema-toggle,
+.menu-toggle{
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     padding: 0;
     cursor: pointer;
     color: var(--texto-suave);
-    background: var(--superficie);
+    background: color-mix(in srgb, var(--fundo) 55%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--borda);
     border-radius: 10px;
     transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
-.tema-toggle:hover{
+.tema-toggle:hover,
+.menu-toggle:hover{
     color: var(--texto);
     border-color: var(--primaria);
-    transform: translateY(-50%) scale(1.06);
+    transform: scale(1.06);
+}
+
+/* ---------- Monograma (atalho para a home) ---------- */
+
+/* Sem moldura: só o texto é o alvo de clique. Alinhado à altura dos
+   controles do lado oposto. */
+.marca{
+    view-transition-name: marca;
+    position: fixed;
+    top: 1.25rem;
+    left: 1.5rem;
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    color: var(--texto-suave);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.marca:hover{
+    color: var(--texto);
+}
+
+.marca::after{
+    content:"";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0.55rem;
+    left: 0;
+    border-radius: 2px;
+    background: var(--primaria);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.marca:hover::after{
+    transform: scaleX(1);
+}
+
+/* Na home ele marca presença, mas não é link nem alvo de hover. */
+.marca-inativa{
+    opacity: 0.45;
+    cursor: default;
+}
+
+.marca-inativa:hover{
+    color: var(--texto-suave);
+}
+
+.marca-inativa::after{
+    content: none;
 }
 
 .tema-toggle svg{
@@ -227,6 +183,126 @@ body{
     height: 18px;
     grid-area: 1 / 1;
 }
+
+/* Grade 3x3 de pontos. Ao abrir, as quatro quinas somem — sobram os pontos
+   ortogonais e o centro formando um "+", que gira 45° e vira um X. */
+.menu-grade{
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    grid-template-rows: repeat(3, 4px);
+    gap: 2px;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ponto-menu{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-grade{
+    transform: rotate(45deg);
+}
+
+/* Quinas da grade: 1, 3, 7 e 9 na ordem de leitura. */
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(1),
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(3),
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(7),
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(9){
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* Some em leque, no sentido horário. */
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(1){ transition-delay: 0ms; }
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(3){ transition-delay: 40ms; }
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(9){ transition-delay: 80ms; }
+.menu-toggle[aria-expanded="true"] .ponto-menu:nth-child(7){ transition-delay: 120ms; }
+
+/* ---------- Overlay de navegação ---------- */
+
+.menu-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    padding: 6rem clamp(1.5rem, 8vw, 9rem);
+    background: color-mix(in srgb, var(--fundo) 88%, transparent);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.45s;
+}
+
+.menu-overlay.aberto{
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-lista{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.4rem, 1.6vw, 1rem);
+}
+
+.menu-item{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-overlay.aberto .menu-item{
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(60ms * var(--i));
+}
+
+.menu-link{
+    position: relative;
+    display: inline-block;
+    color: var(--texto-suave);
+    font-size: clamp(2.4rem, 8vw, 4.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu-link:hover{
+    color: var(--texto);
+}
+
+.menu-link[aria-current="page"]{
+    color: var(--texto);
+}
+
+.menu-link::after{
+    content:"";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    border-radius: 2px;
+    background: var(--primaria);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.menu-link:hover::after,
+.menu-link[aria-current="page"]::after{
+    transform: scaleX(1);
+}
+
+/* Sem JS o overlay vira lista estática (ver <noscript> em cada página),
+   para a navegação nunca depender do script. */
 
 .icone-lua{ display: none; }
 
@@ -238,7 +314,7 @@ body{
     :root:not([data-theme="dark"]) .icone-lua{ display: block; }
 }
 
-/* ---------- Cabeçalho ---------- */
+/* ---------- Cabeçalho (Home) ---------- */
 
 .cabecalho{
     position: relative;
@@ -254,21 +330,27 @@ body{
 h1{
     font-size: clamp(3rem, 9vw, 5.5rem);
     font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1.05;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
 }
 
 .cabecalho-sub{
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    color: var(--texto);
+    font-weight: 500;
+}
+
+.cabecalho-afiliacao{
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
     color: var(--texto-suave);
-    max-width: 30ch;
 }
 
 .social{
     display: flex;
     gap: 0.75rem;
-    margin-top: 2.25rem;
+    margin-top: 2.5rem;
 }
 
 .social-link{
@@ -280,9 +362,7 @@ h1{
     background: var(--superficie);
     border: 1px solid var(--borda);
     border-radius: 14px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .social-link svg{
@@ -298,51 +378,85 @@ h1{
     box-shadow: 0 10px 24px var(--sombra);
 }
 
-.rolar{
-    position: absolute;
-    bottom: 2.5rem;
+.entradas{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem 2.5rem;
+    margin-top: 3.25rem;
+}
+
+.entrada-link{
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.85rem;
+    gap: 0.5rem;
+    padding-bottom: 0.35rem;
     color: var(--texto-suave);
+    font-size: 1.05rem;
+    font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.rolar:hover{ color: var(--texto); }
-
-.rolar svg{
-    width: 16px;
-    height: 16px;
-    animation: pular 2s ease-in-out infinite;
+/* Numa página de portfólio o trabalho lidera: projetos é a ação primária. */
+.entrada-link-principal{
+    color: var(--texto);
+    font-weight: 600;
 }
 
-@keyframes pular{
-    0%, 100%{ transform: translateY(0); }
-    50%{ transform: translateY(5px); }
+.entrada-link:hover{
+    color: var(--texto);
 }
 
-/* ---------- Seções ---------- */
+/* Mesmo sublinhado da barra de navegação. */
+.entrada-link::after{
+    content:"";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+    background: var(--primaria);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
 
-.secao{
+.entrada-link:hover::after{
+    transform: scaleX(1);
+}
+
+.entrada-seta{
+    color: var(--primaria);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.entrada-link:hover .entrada-seta{
+    transform: translateX(4px);
+}
+
+/* ---------- Cabeçalho de página (Projetos, Sobre, Contato) ---------- */
+
+.pagina{
     max-width: 1000px;
     margin: 0 auto;
-    padding: 6rem 1.5rem;
+    padding: 7.5rem 1.5rem 6rem;
 }
 
-.secao-cabecalho{
+.pagina-cabecalho{
     margin-bottom: 3.5rem;
 }
 
-.secao-titulo{
+.pagina-titulo{
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.1;
 }
 
-.secao-sub{
+.pagina-sub{
     color: var(--texto-suave);
     font-size: 1rem;
     margin-top: 0.25rem;
@@ -367,83 +481,61 @@ h1{
     font-weight: 600;
 }
 
-/* ---------- Lista (experiência e projetos) ---------- */
-
-.lista{
-    display: flex;
-    flex-direction: column;
-}
-
-.item{
-    display: flex;
-    align-items: flex-start;
-    gap: 2.5rem;
-    padding-bottom: 3rem;
-}
-
-.item + .item{
-    border-top: 1px solid var(--borda);
-    padding-top: 3rem;
-}
-
-.item:last-child{
-    padding-bottom: 0;
-}
-
-.item-media{
-    flex: 0 0 300px;
-    overflow: hidden;
-    border: 1px solid var(--borda);
-    border-radius: 14px;
-    background: var(--superficie);
-}
-
-.item-imagem{
-    display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.5s ease;
-}
-
-.item:hover .item-imagem{
-    transform: scale(1.05);
-}
-
-.item-corpo{
-    flex: 1;
-    min-width: 0;
-}
-
-.item-meta{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
-    font-size: 0.85rem;
-    color: var(--texto-suave);
-    margin-bottom: 0.4rem;
-}
-
-.item-papel{
+.botao-secundario{
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
+    gap: 0.6rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    color: var(--texto);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: var(--superficie);
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
 
-.ponto{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
+.botao-secundario svg{
+    width: 18px;
+    height: 18px;
 }
 
-.ponto-1{ background: var(--primaria); }
-.ponto-2{ background: var(--secundaria); }
-.ponto-3{ background: var(--terciaria); }
+.botao-secundario:hover{
+    border-color: var(--primaria);
+    background: var(--superficie-forte);
+    transform: translateY(-2px);
+}
+
+.formacao{
+    max-width: 62ch;
+    padding-top: 3rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--borda);
+}
+
+.formacao-titulo{
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+}
+
+.formacao-quando{
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    margin-bottom: 0.9rem;
+}
+
+.formacao-desc{
+    color: var(--texto-suave);
+    max-width: 62ch;
+    margin-bottom: 1.1rem;
+}
+
+/* ---------- Chips e tags (usados em projetos e sobre) ---------- */
 
 .chip{
     display: inline-block;
@@ -454,17 +546,9 @@ h1{
     font-size: 0.78rem;
 }
 
-.item-titulo{
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 0.6rem;
-}
-
-.item-desc{
-    color: var(--texto-suave);
-    max-width: 62ch;
+.chip-repo{
+    border-color: color-mix(in srgb, var(--primaria) 45%, transparent);
+    color: var(--primaria);
 }
 
 .tags{
@@ -484,23 +568,232 @@ h1{
     background: var(--superficie);
 }
 
-.item-links{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    margin-top: 1.1rem;
+/* ---------- Projetos: lista em split-screen ---------- */
+
+.pagina-projetos{
+    max-width: 1240px;
 }
 
-.item-links a{
-    color: var(--texto-suave);
-    text-decoration: none;
+.projetos-split{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+.projetos-cabecalho{
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+}
+
+.projetos-contador{
     font-size: 0.9rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    color: var(--texto-suave);
+    font-variant-numeric: tabular-nums;
 }
 
-.item-links a:hover{
+.projetos-lista{
+    list-style: none;
+    margin-top: 2.5rem;
+}
+
+.projeto-item{
+    border-top: 1px solid var(--borda);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: projeto-entra 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(75ms * var(--i));
+}
+
+.projeto-item:last-child{
+    border-bottom: 1px solid var(--borda);
+}
+
+@keyframes projeto-entra{
+    to{ opacity: 1; transform: none; }
+}
+
+/* A entrada anima o <li>; o esmaecimento age na linha, para uma coisa não
+   sobrescrever a outra. */
+.projeto-linha{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.15rem 0;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.4s ease;
+}
+
+.projeto-nome-grupo{
+    position: relative;
+    padding-left: 1.9rem;
+    min-width: 0;
+}
+
+/* A seta ocupa um espaço já reservado e só desliza para dentro dele:
+   assim ela aparece sem empurrar o nome nem recalcular o layout. */
+.projeto-seta{
+    position: absolute;
+    left: 0;
+    top: 0;
     color: var(--primaria);
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projeto-nome{
+    font-size: clamp(1.3rem, 2.4vw, 1.95rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--texto-suave);
+    transition: color 0.35s ease;
+}
+
+.projeto-categoria{
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--texto-suave);
+    opacity: 0.65;
+    transition: opacity 0.35s ease, color 0.35s ease;
+}
+
+.projeto-item.ativo .projeto-seta{ opacity: 1; transform: none; }
+.projeto-item.ativo .projeto-nome{ color: var(--texto); }
+.projeto-item.ativo .projeto-categoria{ opacity: 1; color: var(--texto); }
+
+.projetos-lista.tem-hover .projeto-item:not(.ativo) .projeto-linha{
+    opacity: 0.3;
+}
+
+/* ---------- Painel de destaque (coluna esquerda) ---------- */
+
+.projetos-visual{
+    display: none;
+}
+
+.visual-item{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.55s;
+}
+
+.visual-item.ativo{
+    opacity: 1;
+    visibility: visible;
+}
+
+.projeto-imagem{
+    overflow: hidden;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+}
+
+.visual-conteudo .projeto-imagem{
+    aspect-ratio: 16 / 10;
+    border-radius: 0 1.75rem 0 0;
+}
+
+.visual-conteudo .projeto-imagem img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transform: scale(1.07);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visual-item.ativo .projeto-imagem img{
+    transform: scale(1);
+}
+
+/* Capa para projeto que ainda não tem imagem. */
+.projeto-imagem-vazia{
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+}
+
+.capa-nome{
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+.projeto-meta{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+.projeto-desc{
+    margin-top: 0.9rem;
+    max-width: 52ch;
+    font-size: 0.97rem;
+    color: var(--texto-suave);
+}
+
+@media (min-width: 900px){
+    .projetos-split{
+        grid-template-columns: 44% 1fr;
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+        min-height: calc(100vh - 16rem);
+    }
+
+    .projetos-visual{
+        display: block;
+        position: relative;
+        min-height: 31rem;
+    }
+
+    /* Só quando o painel existe o detalhe embutido sai da tela — sem JS ele
+       continua visível e a página vira a lista empilhada de sempre. */
+    .js-projetos .projeto-detalhe{
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+}
+
+@media (max-width: 899px){
+    .projeto-detalhe{
+        padding-bottom: 1.75rem;
+    }
+
+    .projeto-detalhe .projeto-imagem{
+        border-radius: 14px;
+        margin-bottom: 1rem;
+    }
+
+    .projeto-detalhe .projeto-imagem img{
+        display: block;
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        object-position: top;
+    }
 }
 
 /* ---------- Stack de tecnologias ---------- */
@@ -510,6 +803,7 @@ h1{
     flex-direction: column;
     gap: 1.75rem;
     padding-top: 3rem;
+    margin-top: 3rem;
     border-top: 1px solid var(--borda);
 }
 
@@ -558,8 +852,8 @@ h1{
     font-weight: 600;
     text-decoration: none;
     border-radius: 12px;
-    background: linear-gradient(45deg, var(--primaria), var(--secundaria));
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--primaria);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .botao-principal svg{
@@ -568,6 +862,7 @@ h1{
 }
 
 .botao-principal:hover{
+    background: var(--primaria-forte);
     transform: translateY(-4px);
     box-shadow: 0 12px 28px color-mix(in srgb, var(--primaria) 40%, transparent);
 }
@@ -599,25 +894,6 @@ h1{
     font-size: 0.85rem;
     color: var(--texto-suave);
     border-top: 1px solid var(--borda);
-}
-
-/* ---------- Revelar ao rolar ---------- */
-
-.item,
-.stack,
-.sobre-container,
-.contato-caixa{
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.item.visivel,
-.stack.visivel,
-.sobre-container.visivel,
-.contato-caixa.visivel{
-    opacity: 1;
-    transform: none;
 }
 
 /* ---------- Foco visível ---------- */
@@ -666,11 +942,11 @@ button:focus-visible{
         right: 1rem;
     }
 
-    .secao{
-        padding: 4.5rem 1.25rem;
+    .pagina{
+        padding: 7.5rem 1.25rem 4.5rem;
     }
 
-    .secao-cabecalho{
+    .pagina-cabecalho{
         margin-bottom: 2.5rem;
     }
 
@@ -686,10 +962,6 @@ button:focus-visible{
     .sobre-paragrafo,
     .contato-texto{
         font-size: 1rem;
-    }
-
-    .blob{
-        filter: blur(80px);
     }
 }
 
@@ -716,22 +988,15 @@ button:focus-visible{
 /* ---------- Movimento reduzido ---------- */
 
 @media (prefers-reduced-motion: reduce){
-    html{
-        scroll-behavior: auto;
-    }
-
-    .blob,
-    .rolar svg{
+    ::view-transition-old(root),
+    ::view-transition-new(root){
         animation: none;
     }
 
-    .item,
-    .stack,
-    .sobre-container,
-    .contato-caixa{
+    .projeto-item{
+        animation: none;
         opacity: 1;
         transform: none;
-        transition: none;
     }
 
     *{

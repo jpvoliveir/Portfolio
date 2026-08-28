@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Projetos de João Pedro - Desenvolvedor Full Stack. Aplicativos, plataformas web e modelos de machine learning."
+    />
+    <meta
+      name="keywords"
+      content="desenvolvedor, full stack, portfólio, programador, JavaScript, React, Laravel"
+    />
+    <meta name="author" content="João Pedro" />
+    <meta name="theme-color" content="#0b0f1a" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <noscript>
+      <style>
+        .menu-toggle{display:none}
+        .menu-overlay{position:static;opacity:1;visibility:visible;padding:5.5rem 1.5rem 0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+        .menu-item{opacity:1;transform:none}
+        .menu-link{font-size:1.5rem}
+      </style>
+    </noscript>
+    <title>Projetos - João Pedro</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("tema");
+          if (t) document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <canvas id="fundo-canvas" aria-hidden="true"></canvas>
+
+    <a class="marca" href="index.html" aria-label="Voltar para o início">JP</a>
+
+    <div class="controles">
+      <button
+        type="button"
+        id="tema-toggle"
+        class="tema-toggle"
+        aria-label="Alternar entre tema claro e escuro"
+      >
+        <svg
+          class="icone-sol"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          />
+        </svg>
+        <svg
+          class="icone-lua"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="menu-overlay"
+      >
+        <span class="menu-grade" aria-hidden="true">
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+          <span class="ponto-menu"></span>
+        </span>
+      </button>
+    </div>
+
+    <nav id="menu-overlay" class="menu-overlay" aria-label="Navegação principal">
+      <ul class="menu-lista">
+        <li class="menu-item" style="--i: 0">
+          <a href="index.html" class="menu-link">Início</a>
+        </li>
+        <li class="menu-item" style="--i: 1">
+          <a href="sobre.html" class="menu-link">Sobre</a>
+        </li>
+        <li class="menu-item" style="--i: 2">
+          <a href="projetos.html" class="menu-link" aria-current="page">Projetos</a>
+        </li>
+        <li class="menu-item" style="--i: 3">
+          <a href="contato.html" class="menu-link">Contato</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="pagina pagina-projetos">
+      <div class="projetos-split">
+        <!-- Painel esquerdo: preenchido por projetos.js a partir dos
+             .projeto-detalhe da lista, para cada projeto viver num lugar só. -->
+        <div class="projetos-visual" aria-hidden="true"></div>
+
+        <div class="projetos-painel">
+          <header class="projetos-cabecalho">
+            <h1 class="pagina-titulo">Projetos</h1>
+            <span class="projetos-contador">06</span>
+          </header>
+          <p class="pagina-sub">coisas que eu construí</p>
+
+          <ul class="projetos-lista">
+            <li class="projeto-item" data-index="0" style="--i: 0">
+              <div class="projeto-linha">
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">Trophe</span>
+                </span>
+                <span class="projeto-categoria">Full-Stack Developer</span>
+              </div>
+              <div class="projeto-detalhe">
+                <div class="projeto-imagem">
+                  <img
+                    src="img/trophe.jpg"
+                    alt="Tela de acompanhamento diário do aplicativo Trophe"
+                    loading="lazy"
+                    width="1398"
+                    height="648"
+                  />
+                </div>
+                <p class="projeto-meta">
+                  2026 &middot; <span class="chip">Laravel · React Native</span>
+                </p>
+                <p class="projeto-desc">
+                  Aplicativo de dieta flexível que vai além do registro de
+                  calorias: reconhece a refeição por foto, gera a estratégia
+                  alimentar do dia e a recalcula a cada refeição registrada. O
+                  diferencial é o motor de previsão de deslize, que cruza déficit
+                  calórico acumulado, tempo sem comer e o histórico do usuário
+                  para alertar antes que a dieta seja quebrada. Projeto em equipe
+                  no qual atuei como principal contribuidor, do backend ao app.
+                </p>
+                <ul class="tags">
+                  <li>React Native</li>
+                  <li>Expo</li>
+                  <li>TypeScript</li>
+                  <li>Laravel</li>
+                  <li>MySQL</li>
+                  <li>IA</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="projeto-item" data-index="1" style="--i: 1">
+              <a
+                class="projeto-linha"
+                href="https://github.com/joaogpereira/deep-dish"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">Deep Dish</span>
+                </span>
+                <span class="projeto-categoria">Full-Stack Developer</span>
+              </a>
+              <div class="projeto-detalhe">
+                <div class="projeto-imagem">
+                  <img
+                    src="img/deep-dish.jpg"
+                    alt="Landing page da plataforma Deep Dish"
+                    loading="lazy"
+                    width="1398"
+                    height="648"
+                  />
+                </div>
+                <p class="projeto-meta">
+                  2025 – 2026 &middot; <span class="chip">React · Laravel</span>
+                  <span class="chip chip-repo">GitHub</span>
+                </p>
+                <p class="projeto-desc">
+                  Plataforma de fila inteligente e reserva de mesas para
+                  restaurantes. O cliente entra na fila remotamente e acompanha a
+                  própria posição em tempo real; o restaurante controla mesas,
+                  reservas do dia e equipe por um painel separado. Desenvolvido em
+                  equipe, com integração contínua no GitHub Actions e ambiente
+                  containerizado em Docker.
+                </p>
+                <ul class="tags">
+                  <li>React</li>
+                  <li>TypeScript</li>
+                  <li>Vite</li>
+                  <li>Tailwind</li>
+                  <li>Laravel</li>
+                  <li>Docker</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="projeto-item" data-index="2" style="--i: 2">
+              <div class="projeto-linha">
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">Escalonador</span>
+                </span>
+                <span class="projeto-categoria">Backend Developer</span>
+              </div>
+              <div class="projeto-detalhe">
+                <div class="projeto-imagem">
+                  <img
+                    src="img/escalonador.jpg"
+                    alt="Painel de criação com IA do Escalonador, com os modelos de geração de vídeo"
+                    loading="lazy"
+                    width="1398"
+                    height="648"
+                  />
+                </div>
+                <p class="projeto-meta">
+                  2026 &middot; <span class="chip">Laravel</span>
+                </p>
+                <p class="projeto-desc">
+                  Plataforma de marketing de performance em produção. Atuei no
+                  módulo de geração de vídeos com IA: implementei o suporte a
+                  múltiplos workspaces, com CRUD próprio para cada um, permitindo
+                  que o usuário organize trabalhos em contextos separados em vez
+                  de acumular tudo em um só. Também integrei o Kling 3.0 como novo
+                  modelo de geração de vídeo.
+                </p>
+                <ul class="tags">
+                  <li>Laravel</li>
+                  <li>PHP</li>
+                  <li>MySQL</li>
+                  <li>API REST</li>
+                  <li>Kling 3.0</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="projeto-item" data-index="3" style="--i: 3">
+              <div class="projeto-linha">
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">MySON</span>
+                </span>
+                <span class="projeto-categoria">Mobile Developer</span>
+              </div>
+              <div class="projeto-detalhe">
+                <div class="projeto-imagem">
+                  <img
+                    src="img/CadastroSono.png"
+                    alt="Tela do aplicativo MySON"
+                    loading="lazy"
+                    width="560"
+                    height="320"
+                  />
+                </div>
+                <!-- TODO: confirme o ano -->
+                <p class="projeto-meta">
+                  2024 &middot; <span class="chip">Java · Android</span>
+                </p>
+                <p class="projeto-desc">
+                  Aplicativo Android para acompanhamento de recém-nascidos.
+                  Registra rotinas de sono, alimentação e demais atividades do
+                  bebê, e organiza o histórico para que os pais consigam
+                  identificar padrões ao longo dos dias.
+                </p>
+                <ul class="tags">
+                  <li>Java</li>
+                  <li>Android Studio</li>
+                  <li>SQLite</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="projeto-item" data-index="4" style="--i: 4">
+              <div class="projeto-linha">
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">Maison-Olivier</span>
+                </span>
+                <span class="projeto-categoria">Full-Stack Developer</span>
+              </div>
+              <div class="projeto-detalhe">
+                <div class="projeto-imagem">
+                  <img
+                    src="img/projeto4.png"
+                    alt="Tela do site Maison-Olivier"
+                    loading="lazy"
+                    width="560"
+                    height="320"
+                  />
+                </div>
+                <!-- TODO: confirme o ano -->
+                <p class="projeto-meta">
+                  2025 &middot; <span class="chip">Laravel · React</span>
+                </p>
+                <p class="projeto-desc">
+                  Loja de departamento de roupas de alto padrão, com catálogo,
+                  navegação por categorias e um design voltado para o público
+                  premium. Front-end em React consumindo uma API em Laravel.
+                </p>
+                <ul class="tags">
+                  <li>Laravel</li>
+                  <li>React</li>
+                  <li>PHP</li>
+                  <li>MySQL</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="projeto-item" data-index="5" style="--i: 5">
+              <div class="projeto-linha">
+                <span class="projeto-nome-grupo">
+                  <span class="projeto-seta" aria-hidden="true">&rarr;</span>
+                  <span class="projeto-nome">HydroInsight</span>
+                </span>
+                <span class="projeto-categoria">Machine Learning</span>
+              </div>
+              <div class="projeto-detalhe">
+                <!-- TODO: salve um gráfico do projeto em img/hydroinsight.jpg e
+                     acrescente aqui uma <div class="projeto-imagem"> com a <img>.
+                     Sem imagem, o painel usa o nome do projeto como capa. -->
+                <p class="projeto-meta">
+                  2026 &middot;
+                  <span class="chip">Python · scikit-learn</span>
+                </p>
+                <p class="projeto-desc">
+                  Modelo de previsão de qualidade da água em rios da África do
+                  Sul, feito para o EY AI &amp; Data Challenge 2026. Combina
+                  imagens de satélite Landsat, variáveis climáticas do
+                  TerraClimate e medições in situ para estimar três indicadores —
+                  fósforo reativo dissolvido, condutividade elétrica e
+                  alcalinidade total. O pipeline vai do download dos dados à
+                  submissão, com engenharia de índices espectrais, agregações
+                  espaço-temporais e experimentos versionados em MLflow e DVC.
+                </p>
+                <ul class="tags">
+                  <li>Python</li>
+                  <li>scikit-learn</li>
+                  <li>Random Forest</li>
+                  <li>MLflow</li>
+                  <li>DVC</li>
+                  <li>GeoPandas</li>
+                  <li>Sensoriamento Remoto</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <p>&copy; 2026 João Pedro &middot; feito com HTML, CSS e JavaScript</p>
+    </footer>
+
+    <script>
+      (function () {
+        const botao = document.getElementById("tema-toggle");
+        const raiz = document.documentElement;
+
+        function temaAtual() {
+          const definido = raiz.getAttribute("data-theme");
+          if (definido) return definido;
+          return window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        }
+
+        botao.addEventListener("click", function () {
+          const novo = temaAtual() === "dark" ? "light" : "dark";
+          raiz.setAttribute("data-theme", novo);
+          try {
+            localStorage.setItem("tema", novo);
+          } catch (e) {}
+        });
+      })();
+    </script>
+    <script src="menu.js"></script>
+    <script src="projetos.js"></script>
+    <script src="fundo-webgl.js"></script>
+  </body>
+</html>
