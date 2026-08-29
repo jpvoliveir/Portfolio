@@ -397,35 +397,55 @@ h1{
     color: var(--texto-suave);
 }
 
+/* Sem gap: os divisores fazem a separação e as células precisam encostar. */
 .social{
     display: flex;
-    gap: 0.75rem;
+    gap: 0;
     margin-top: 2.5rem;
 }
 
+/* As cinco caixas viraram uma fileira só. Sem moldura, sem preenchimento: as
+   marcas já são formas reconhecíveis e a caixa em volta não carregava sentido.
+   A célula mantém 52x48 para o alvo de toque continuar confortável mesmo sem
+   nada visível. */
 .social-link{
+    position: relative;
     display: grid;
     place-items: center;
-    width: 46px;
-    height: 46px;
+    width: 52px;
+    height: 48px;
     color: var(--texto-suave);
-    background: var(--superficie);
-    border: 1px solid var(--borda);
-    border-radius: 14px;
-    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+/* Hairline curto e centrado em vez de border-left: um divisor de altura cheia
+   pesaria demais num hero que precisa recuar. */
+.social-link:not(:first-child)::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 18px;
+    margin-top: -9px;
+    background: var(--borda);
 }
 
 .social-link svg{
     width: 20px;
     height: 20px;
+    transition: opacity 0.3s ease;
 }
 
 .social-link:hover{
     color: var(--texto);
-    border-color: var(--primaria);
-    background: var(--superficie-forte);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px var(--sombra);
+}
+
+/* O mesmo gesto da lista de projetos: os irmãos recuam, o alvo vem a pleno.
+   Esmaece só o svg — assim a estrutura de divisores fica firme enquanto as
+   marcas respondem. */
+.social:hover .social-link:not(:hover) svg{
+    opacity: 0.35;
 }
 
 .entradas{
