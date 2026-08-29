@@ -1,0 +1,10 @@
+# Ferramentas de desenvolvimento — contexto local, não faz parte do site
+.impeccable/
+.claude/
+.code-review-graph/
+.agents/
+PRODUCT.md
+
+# Sistema
+.DS_Store
+Thumbs.db
