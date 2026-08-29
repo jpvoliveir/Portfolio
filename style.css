@@ -1,16 +1,21 @@
 /* ---------- PP Neue Montreal (Pangram Pangram) ---------- */
 
 /* Licença "Free for Personal Use" — EULA junto dos arquivos em fonts/.
-   O conjunto gratuito traz Regular, Semibold e Extrabold: não existe Medium
-   nem Bold. Os pesos 700 do site foram remapeados para 600, senão o casamento
-   de fontes do CSS sobe para 800 e achata a diferença entre título de página
-   e o h1 da home. O 500 cai em Regular pela mesma regra, que é o que se quer.
-   Subconjunto latin + pontuação: 20 KB por peso em vez de ~200 KB do OTF. */
+   Subconjunto latin + pontuação: ~21 KB por corte em vez de ~200 KB do OTF.
+
+   O texto usa o corte Book, que é o Text — o tamanho óptico da família,
+   desenhado para leitura, não o display afinado. Peso real 350 (Light é 300,
+   Regular 400), declarado aqui como 350 mesmo.
+
+   Não existe face em 400 nem em 500. Pela regra de casamento do CSS, ambos
+   descem para 350 e caem no Book, que é o que se quer — por isso os
+   font-weight: 400 e 500 espalhados pelo site continuam válidos sem mudança.
+   Também não há Medium nem Bold: os 700 originais foram remapeados para 600. */
 
 @font-face{
     font-family: 'PP Neue Montreal';
-    src: url('fonts/ppneuemontreal-regular.woff2') format('woff2');
-    font-weight: 400;
+    src: url('fonts/ppneuemontreal-book.woff2') format('woff2');
+    font-weight: 350;
     font-style: normal;
     font-display: swap;
 }
@@ -19,14 +24,6 @@
     font-family: 'PP Neue Montreal';
     src: url('fonts/ppneuemontreal-semibold.woff2') format('woff2');
     font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face{
-    font-family: 'PP Neue Montreal';
-    src: url('fonts/ppneuemontreal-extrabold.woff2') format('woff2');
-    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
