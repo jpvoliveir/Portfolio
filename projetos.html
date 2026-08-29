@@ -149,12 +149,17 @@
                 </p>
                 <p class="projeto-desc">
                   Aplicativo de dieta flexível que vai além do registro de
-                  calorias: reconhece a refeição por foto, gera a estratégia
-                  alimentar do dia e a recalcula a cada refeição registrada. O
-                  diferencial é o motor de previsão de deslize, que cruza déficit
-                  calórico acumulado, tempo sem comer e o histórico do usuário
-                  para alertar antes que a dieta seja quebrada. Projeto em equipe
-                  no qual atuei como principal contribuidor, do backend ao app.
+                  calorias: cria a dieta, reconhece a refeição por foto e
+                  recalcula as refeições seguintes a cada registro para
+                  manter as metas de calorias e macronutrientes. O
+                  diferencial é o motor de criação de dieta via IA, que
+                  parte do cálculo metabólico basal (Mifflin-St Jeor), da
+                  leitura da rotina e do histórico do usuário. O backend
+                  em Laravel reúne 52 endpoints REST, 25 tabelas e 21
+                  services de domínio, coberto por 437 testes
+                  automatizados em PHPUnit; o app em React Native tem 48
+                  telas. Projeto em equipe de 5 desenvolvedores no qual
+                  atuei como principal contribuidor, do backend ao app.
                 </p>
                 <ul class="tags">
                   <li>React Native</li>
@@ -162,7 +167,9 @@
                   <li>TypeScript</li>
                   <li>Laravel</li>
                   <li>MySQL</li>
+                  <li>PHPUnit</li>
                   <li>IA</li>
+                  <li>Open Food Facts</li>
                 </ul>
               </div>
             </li>
@@ -196,11 +203,16 @@
                 </p>
                 <p class="projeto-desc">
                   Plataforma de fila inteligente e reserva de mesas para
-                  restaurantes. O cliente entra na fila remotamente e acompanha a
-                  própria posição em tempo real; o restaurante controla mesas,
-                  reservas do dia e equipe por um painel separado. Desenvolvido em
-                  equipe, com integração contínua no GitHub Actions e ambiente
-                  containerizado em Docker.
+                  restaurantes. O cliente entra na fila remotamente e
+                  acompanha a própria posição em tempo real; o restaurante
+                  controla mesas, reservas do dia e equipe por um painel
+                  separado. Implementei o fluxo de fila ponta a ponta —
+                  modelagem, service, controllers e endpoints no Laravel,
+                  e as telas de entrar e cancelar fila no React — além do
+                  histórico de permanência dos clientes. Projeto em equipe
+                  de 6 desenvolvedores, com 220 commits, 48 endpoints REST
+                  e 93 componentes React, integração contínua no GitHub
+                  Actions e ambiente containerizado em Docker.
                 </p>
                 <ul class="tags">
                   <li>React</li>
@@ -235,12 +247,16 @@
                   2026 &middot; <span class="chip">Laravel</span>
                 </p>
                 <p class="projeto-desc">
-                  Plataforma de marketing de performance em produção. Atuei no
-                  módulo de geração de vídeos com IA: implementei o suporte a
-                  múltiplos workspaces, com CRUD próprio para cada um, permitindo
-                  que o usuário organize trabalhos em contextos separados em vez
-                  de acumular tudo em um só. Também integrei o Kling 3.0 como novo
-                  modelo de geração de vídeo.
+                  Plataforma de marketing de performance em produção,
+                  desenvolvida em trabalho freelance. Atuei no módulo de
+                  geração de vídeos com IA: implementei o suporte a
+                  múltiplos workspaces, com CRUD próprio para cada um,
+                  permitindo que o usuário organize trabalhos em contextos
+                  separados em vez de acumular tudo em um só. Também
+                  integrei o Kling 3.0 como novo modelo de geração de
+                  vídeo e corrigi a falha que travava a geração
+                  indefinidamente, passando a entregar o criativo em cerca
+                  de 2 minutos.
                 </p>
                 <ul class="tags">
                   <li>Laravel</li>
@@ -341,13 +357,16 @@
                   <span class="chip">Python · scikit-learn</span>
                 </p>
                 <p class="projeto-desc">
-                  Modelo de previsão de qualidade da água em rios da África do
-                  Sul, feito para o EY AI &amp; Data Challenge 2026. Combina
-                  imagens de satélite Landsat, variáveis climáticas do
-                  TerraClimate e medições in situ para estimar três indicadores —
-                  fósforo reativo dissolvido, condutividade elétrica e
-                  alcalinidade total. O pipeline vai do download dos dados à
-                  submissão, com engenharia de índices espectrais, agregações
+                  Modelo de previsão de qualidade da água em rios da
+                  África do Sul, feito para o EY AI &amp; Data Challenge
+                  2026. Combina imagens de satélite Landsat, variáveis
+                  climáticas do TerraClimate e medições in situ para
+                  estimar três indicadores — fósforo reativo dissolvido,
+                  condutividade elétrica e alcalinidade total. Treinado
+                  sobre 9.319 medições in situ, o modelo Random Forest
+                  alcança R² de 0,51 a 0,56 no conjunto de teste. O
+                  pipeline vai do download dos dados à submissão, com
+                  engenharia de índices espectrais, agregações
                   espaço-temporais e experimentos versionados em MLflow e DVC.
                 </p>
                 <ul class="tags">
