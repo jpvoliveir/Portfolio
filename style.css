@@ -1,14 +1,53 @@
+/* ---------- PP Neue Montreal (Pangram Pangram) ---------- */
+
+/* Licença "Free for Personal Use" — EULA junto dos arquivos em fonts/.
+   O conjunto gratuito traz Regular, Semibold e Extrabold: não existe Medium
+   nem Bold. Os pesos 700 do site foram remapeados para 600, senão o casamento
+   de fontes do CSS sobe para 800 e achata a diferença entre título de página
+   e o h1 da home. O 500 cai em Regular pela mesma regra, que é o que se quer.
+   Subconjunto latin + pontuação: 20 KB por peso em vez de ~200 KB do OTF. */
+
+@font-face{
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/ppneuemontreal-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face{
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/ppneuemontreal-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face{
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/ppneuemontreal-extrabold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Switzer', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'PP Neue Montreal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Tema escuro (padrão) */
+
+/* --primaria é o acento decorativo (sublinhados, setas, seleção, hovers): um
+   cinza frio, entre --texto-suave e --texto, para ler como acento sem virar
+   cor de marca. --acao fica reservada ao que é ação de verdade — o CTA do
+   WhatsApp e o anel de foco — que precisam continuar se destacando. */
 :root{
-    --primaria: #6366f1;
-    --primaria-forte: #818cf8;
+    --primaria: #a3aec2;
+    --acao: #6366f1;
+    --acao-forte: #818cf8;
     --fundo: #0b0f1a;
     --superficie: rgba(255,255,255,0.04);
     --superficie-forte: rgba(255,255,255,0.07);
@@ -21,8 +60,9 @@
 /* Tema claro por preferência do sistema (quando o usuário não escolheu nada) */
 @media (prefers-color-scheme: light){
     :root:not([data-theme="dark"]){
-        --primaria: #4f46e5;
-        --primaria-forte: #4338ca;
+        --primaria: #4d5768;
+        --acao: #4f46e5;
+        --acao-forte: #4338ca;
         --fundo: #f6f6fb;
         --superficie: rgba(15,23,42,0.035);
         --superficie-forte: rgba(15,23,42,0.06);
@@ -35,8 +75,9 @@
 
 /* Tema claro escolhido no botão */
 :root[data-theme="light"]{
-    --primaria: #4f46e5;
-    --primaria-forte: #4338ca;
+    --primaria: #4d5768;
+    --acao: #4f46e5;
+    --acao-forte: #4338ca;
     --fundo: #f6f6fb;
     --superficie: rgba(15,23,42,0.035);
     --superficie-forte: rgba(15,23,42,0.06);
@@ -53,9 +94,18 @@ body{
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Base do texto corrido. Fica no seletor de elemento de propósito: as classes
+   que já definem peso próprio (.cabecalho-sub e afins) continuam vencendo. */
+p{
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* O texto da seleção acompanha o fundo do tema, não é branco fixo: com o acento
+   cinza claro no tema escuro, branco sobre branco-acinzentado ficaria ilegível. */
 ::selection{
     background: var(--primaria);
-    color: #fff;
+    color: var(--fundo);
 }
 
 /* ---------- Fundo animado (WebGL2) ---------- */
@@ -136,7 +186,7 @@ body{
     height: 40px;
     color: var(--texto-suave);
     font-size: 1.35rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.03em;
     text-decoration: none;
     transition: color 0.3s ease, opacity 0.3s ease;
@@ -267,7 +317,7 @@ body{
     display: inline-block;
     color: var(--texto-suave);
     font-size: clamp(2.4rem, 8vw, 4.75rem);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.12;
     text-decoration: none;
@@ -329,8 +379,8 @@ body{
 
 h1{
     font-size: clamp(3rem, 9vw, 5.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    letter-spacing: -1.5px;
     line-height: 1.05;
     margin-bottom: 0.9rem;
 }
@@ -449,10 +499,13 @@ h1{
     margin-bottom: 3.5rem;
 }
 
+/* É o <h1> das páginas internas, então segue o mesmo peso e tracking do h1 da
+   home — a classe venceria o seletor de elemento e deixaria a regra pela
+   metade. */
 .pagina-titulo{
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    letter-spacing: -1.5px;
     line-height: 1.1;
 }
 
@@ -518,8 +571,8 @@ h1{
 
 .formacao-titulo{
     font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: -0.3px;
     margin-bottom: 0.35rem;
 }
 
@@ -648,7 +701,7 @@ h1{
 
 .projeto-nome{
     font-size: clamp(1.3rem, 2.4vw, 1.95rem);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: var(--texto-suave);
@@ -725,7 +778,7 @@ h1{
 
 .capa-nome{
     font-size: clamp(1.5rem, 3vw, 2.4rem);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.03em;
     color: var(--texto-suave);
     text-align: center;
@@ -809,8 +862,8 @@ h1{
 
 .stack-titulo{
     font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    letter-spacing: -0.3px;
 }
 
 .stack-grupo{
@@ -852,7 +905,7 @@ h1{
     font-weight: 600;
     text-decoration: none;
     border-radius: 12px;
-    background: var(--primaria);
+    background: var(--acao);
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -862,9 +915,9 @@ h1{
 }
 
 .botao-principal:hover{
-    background: var(--primaria-forte);
+    background: var(--acao-forte);
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px color-mix(in srgb, var(--primaria) 40%, transparent);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--acao) 40%, transparent);
 }
 
 .contato-secundario{
@@ -900,7 +953,7 @@ h1{
 
 a:focus-visible,
 button:focus-visible{
-    outline: 2px solid var(--primaria);
+    outline: 2px solid var(--acao);
     outline-offset: 3px;
     border-radius: 6px;
 }
